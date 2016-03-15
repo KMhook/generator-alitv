@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
+var mkdirp = require('mkdirp');
 
 var templates = require('../main/main').templates;
 
@@ -38,7 +39,7 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
       var componentSrc = 'src/component/'+this.componentName;
 
-      this.mkdir(componentSrc);
+      mkdirp(componentSrc);
 
       this.template(
         this.templatePath(templates+'component/index.js'),

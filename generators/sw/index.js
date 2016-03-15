@@ -1,6 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var path = require('path');
+var mkdirp = require('mkdirp');
 
 var templates = require('../main/main').templates;
 

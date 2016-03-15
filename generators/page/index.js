@@ -1,6 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var path = require('path');
+var mkdirp = require('mkdirp');
 
 var templates = require('../main/main').templates;
 
@@ -36,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
       var pageSrc = 'src/page/'+this.pageName;
 
-      this.mkdir(pageSrc);
+      mkdirp(pageSrc);
 
       this.template(
         this.templatePath(templates+'page/index.html'),

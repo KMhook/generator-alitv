@@ -1,5 +1,6 @@
 'use strict';
 var templates = require('./main').templates;
+var mkdirp = require('mkdirp');
 
 module.exports = {
   ask: function() {
@@ -16,7 +17,7 @@ module.exports = {
   },
 
   create: function() {
-    this.mkdir('src/component');
+    mkdirp('src/component');
     //this.fs.copy(
     //  this.templatePath(templates+'component'),
     //  this.destinationPath('src/component')

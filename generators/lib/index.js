@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
+var mkdirp = require('mkdirp');
 
 var lib = require('../main/lib');
 

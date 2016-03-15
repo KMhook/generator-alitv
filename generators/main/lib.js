@@ -1,5 +1,6 @@
 'use strict';
 var path = require('path');
+var mkdirp = require('mkdirp');
 
 var templates = require('./main').templates;
 
@@ -51,9 +52,9 @@ module.exports = {
   },
 
   create: function() {
-    this.mkdir('src/lib');
-    this.mkdir('src/lib/css');
-    this.mkdir('src/lib/js');
+    mkdirp('src/lib');
+    mkdirp('src/lib/css');
+    mkdirp('src/lib/js');
     this.fs.copy(
       this.templatePath(templates+'lib/css/reset.css'),
       this.destinationPath('src/lib/css/reset.css')

@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
 var urllib = require('urllib');
+var mkdirp = require('mkdirp');
 
 var lib = require('../main/lib');
 var component = require('../main/component');
@@ -17,6 +18,7 @@ module.exports = yeoman.generators.Base.extend({
       chalk.yellow('正在检查更新...')
     );
 
+    //检查更新的方法，请求latest version并比较
     urllib.request('http://registry.npmjs.org/generator-alitv/latest', function (err, data, res) {
       if (err || res.statusCode != 200) {
         this.log(
@@ -68,13 +70,15 @@ module.exports = yeoman.generators.Base.extend({
           name: 'author',
           message: 'Author Name:',
           default: '',
-          warning: ''
+          warning: '',
+          store: true
         },
         {
           name: 'email',
           message: 'Author Email:',
           default: '',
-          warning: ''
+          warning: '',
+          store: true
         },
         {
           name: 'groupName',
@@ -140,16 +144,16 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('README.md')
       );
 
-      this.mkdir('src');
+      mkdirp('src');
       this.writing._lib.bind(this)();
       //this.writing._component.bind(this)();
-      this.mkdir('src/component');
-      this.mkdir('src/page');
-      this.mkdir('src/util');
-      this.mkdir('src/service');
-      this.mkdir('doc');
-      this.mkdir('build');
-      this.mkdir('test');
+      mkdirp('src/component');
+      mkdirp('src/page');
+      mkdirp('src/util');
+      mkdirp('src/service');
+      mkdirp('doc');
+      mkdirp('build');
+      mkdirp('test');
     },
 
     _lib: function() {
