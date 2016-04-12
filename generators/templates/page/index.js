@@ -1,4 +1,5 @@
 // 推荐使用ES2015的语法
+<%= defaultImport %>
 
 const Page = {
   init() {

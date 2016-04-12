@@ -87,6 +87,7 @@ module.exports = {
         this.templatePath(templates+'lib/js/react.js'),
         this.destinationPath('src/lib/js/react.js')
       );
+      this.config.set('react', true);
     }
 
     if (this.es5sham) {
@@ -114,7 +115,13 @@ module.exports = {
       this.fs.copy(
         this.templatePath(templates+'lib/js/redux-min.js'),
         this.destinationPath('src/lib/js/redux-min.js')
-      )
+      );
+
+      this.fs.copy(
+        this.templatePath(templates+'lib/js/react-redux-min.js'),
+        this.destinationPath('src/lib/js/react-redux-min.js')
+      );
+      this.config.set('fluxFramework', 'redux');
     }
   }
 };

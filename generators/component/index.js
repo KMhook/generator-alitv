@@ -8,6 +8,18 @@ var mkdirp = require('mkdirp');
 var templates = require('../main/main').templates;
 
 module.exports = yeoman.generators.Base.extend({
+  _defaultSupport: function() {
+
+  },
+  _reduxSupport: function(path) {
+    this.log('generating redux support dirs ...');
+    mkdirp(path + 'actions');
+    mkdirp(path + 'views');
+    mkdirp(path + 'containers');
+    mkdirp(path + 'reducers');
+    mkdirp(path + 'test');
+  },
+
   prompting: function () {
 
   },
@@ -37,18 +49,28 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     app: function () {
-      var componentSrc = 'src/component/'+this.componentName;
+      var componentSrc = 'src/component/'+this.componentName + '/';
 
       mkdirp(componentSrc);
 
       this.template(
         this.templatePath(templates+'component/index.js'),
-        this.destinationPath(componentSrc+'/index.js')
+        this.destinationPath(componentSrc+'index.js')
       );
+
       this.template(
         this.templatePath(templates+'component/index.less'),
-        this.destinationPath(componentSrc+'/index.less')
+        this.destinationPath(componentSrc+'index.less')
       );
+
+      switch(this.config.get('fluxFramework')) {
+        //mkdirp(componentSrc + '/views'); 
+      case "redux":
+        this._reduxSupport(componentSrc);
+        break;
+      default:
+        break;
+      }
     },
 
     end: function () {
