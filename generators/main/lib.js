@@ -33,6 +33,11 @@ module.exports = {
             value: 'console',
             name: 'console-polyfill.js',
             checked: true
+          },
+          {
+            value: 'redux',
+            name: 'redux-min.js',
+            checked: true
           }
         ]
       }
@@ -46,6 +51,7 @@ module.exports = {
       this.es5sham = hasMod('es5sham');
       this.es5shim = hasMod('es5shim');
       this.console = hasMod('console');
+      this.redux = hasMod('redux');
 
       cb();
     }.bind(this));
@@ -102,6 +108,13 @@ module.exports = {
         this.templatePath(templates+'lib/js/console-polyfill.js'),
         this.destinationPath('src/lib/js/console-polyfill.js')
       );
+    }
+
+    if (this.redux) {
+      this.fs.copy(
+        this.templatePath(templates+'lib/js/redux-min.js'),
+        this.destinationPath('src/lib/js/redux-min.js')
+      )
     }
   }
 };
