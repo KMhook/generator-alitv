@@ -3,34 +3,34 @@ var path = require('path');
 var mkdirp = require('mkdirp');
 
 var templates = require('./main').templates;
+/*
+ * copy common libs to projects
+ */
+function _createCommonLib() {
+  this.fs.copy(
+    this.templatePath(templates+'lib/css/reset.css'),
+    this.destinationPath('src/lib/css/reset.css')
+  );
+  this.fs.copy(
+    this.templatePath(templates+'lib/css/reset.less'),
+    this.destinationPath('src/lib/css/reset.less')
+  );
+  this.fs.copy(
+    this.templatePath(templates+'lib/base.css'),
+    this.destinationPath('src/lib/base.css')
+  );
+  this.fs.copy(
+    this.templatePath(templates+'lib/base.less'),
+    this.destinationPath('src/lib/base.less')
+  );
+  this.fs.copy(
+    this.templatePath(templates+'lib/js/get-min.js'),
+    this.destinationPath('src/lib/js/get-min.js')
+  );
+}
 
 module.exports = {
-  /*
-   * copy common libs to projects
-   */
-  _createCommonLib: function() {
-    this.fs.copy(
-      this.templatePath(templates+'lib/css/reset.css'),
-      this.destinationPath('src/lib/css/reset.css')
-    );
-    this.fs.copy(
-      this.templatePath(templates+'lib/css/reset.less'),
-      this.destinationPath('src/lib/css/reset.less')
-    );
-    this.fs.copy(
-      this.templatePath(templates+'lib/base.css'),
-      this.destinationPath('src/lib/base.css')
-    );
-    this.fs.copy(
-      this.templatePath(templates+'lib/base.less'),
-      this.destinationPath('src/lib/base.less')
-    );
-    this.fs.copy(
-      this.templatePath(templates+'lib/js/get-min.js'),
-      this.destinationPath('src/lib/js/get-min.js')
-    );
-  },
-
+  
   ask: function() {
     var cb = this.async();
 
@@ -82,7 +82,7 @@ module.exports = {
     mkdirp('src/lib');
     mkdirp('src/lib/css');
     mkdirp('src/lib/js');
-    this._createCommonLib();
+    _createCommonLib.bind(this)();
     
     if (this.reactWithRedux) {
       this.fs.copy(
