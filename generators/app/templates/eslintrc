@@ -1,4 +1,11 @@
 {
+  "parseOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
   "ecmaFeatures": {
     "jsx": true,
     "modules": true,
