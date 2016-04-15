@@ -63,13 +63,8 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath(componentSrc+'index.less')
       );
 
-      switch(this.config.get('fluxFramework')) {
-        //mkdirp(componentSrc + '/views'); 
-      case "redux":
+      if(this.config.get('reactWithRedux')) {
         this._reduxSupport(componentSrc);
-        break;
-      default:
-        break;
       }
     },
 

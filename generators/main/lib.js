@@ -98,8 +98,7 @@ module.exports = {
         this.destinationPath('src/lib/js/react-redux-min.js')
       );
 
-      this.config.set('fluxFramework', 'redux');
-      this.config.set('react', true);
+      this.config.set('reactWithRedux', true);
     }
 
     if (this.es5sham) {
